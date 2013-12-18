@@ -7,7 +7,7 @@ import android.widget.*;
 
 public class MainActivity extends Activity
 {
-    /** Called when the activity is first created. */
+    /** Called when the activity is first created.  */
     @Override
     public void onCreate(Bundle savedInstanceState)
 	{
@@ -15,3 +15,5 @@ public class MainActivity extends Activity
         setContentView(R.layout.main);
     }
 }
+
+// this is just a comment
