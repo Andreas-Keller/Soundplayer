@@ -17,3 +17,4 @@ public class MainActivity extends Activity
 }
 
 // this is just a comment
+// this is another comment from thursday 19 dec 16:00
