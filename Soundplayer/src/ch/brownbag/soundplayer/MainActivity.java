@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements OnClickListener
    		
    		File sdcard = Environment.getExternalStorageDirectory();
    		
-   		File audioFile = new File(sdcard.getPath() + "music/PUFF_FINAL.mp3");
+   		File audioFile = new File(sdcard.getPath() + "/Music/Emo_Mamma.mp3");
    		
    		intent.setDataAndType(Uri.fromFile(audioFile), "audio/mp3");
    		startActivity(intent);   		
