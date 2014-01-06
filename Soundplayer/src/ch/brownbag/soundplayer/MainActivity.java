@@ -103,9 +103,6 @@ public class MainActivity extends ListActivity
 					e.printStackTrace();
 				}
     			mp.start();
-    			
-    			
-    			
     			}
     		}
     	}
