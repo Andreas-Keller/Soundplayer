@@ -1,18 +1,16 @@
 package ch.brownbag.soundplayer;
 
-import java.io.File;
+import java.io.IOException;
 
 import android.app.ListActivity;
-import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -41,56 +39,9 @@ public class MainActivity extends ListActivity
     	setListAdapter(new SimpleCursorAdapter(this,
     			android.R.layout.simple_list_item_1, cursor, displayFields,
     			displayViews));
-
-    	// playButton=(Button)this.findViewById(R.id.Button01);
-    	// playButton.setOnClickListener(this);
-    	// String[] columns = {
-    	// MediaStore.Audio.Media.DATA,
-    	// MediaStore.Audio.Media._ID,
-    	// MediaStore.Audio.Media.TITLE,
-    	// MediaStore.Audio.Media.DISPLAY_NAME,
-    	// MediaStore.Audio.Media.MIME_TYPE,
-    	// MediaStore.Audio.Media.ARTIST,
-    	// MediaStore.Audio.Media.ALBUM,
-    	// MediaStore.Audio.Media.IS_RINGTONE,
-    	// MediaStore.Audio.Media.IS_ALARM,
-    	// MediaStore.Audio.Media.IS_MUSIC,
-    	// MediaStore.Audio.Media.IS_NOTIFICATION
-    	// };
-    	// Cursor cursor =
-    	// managedQuery(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, columns,
-    	// null, null, null);
-    	// int fileColumn = cursor.getColumnIndex (MediaStore.Audio.Media.DATA);
-    	// int titleColumn = cursor.getColumnIndex
-    	// (MediaStore.Audio.Media.TITLE);
-    	// int displayColumn = cursor.getColumnIndex
-    	// (MediaStore.Audio.Media.DISPLAY_NAME);
-    	// int mimeTypeColumn = cursor.getColumnIndex
-    	// (MediaStore.Audio.Media.MIME_TYPE);
-    	// if (cursor.moveToFirst()) {
-    	// String audioFilePath = cursor.getString(fileColumn);
-    	// String mimeType = cursor.getString(mimeTypeColumn);
-    	// Log.v("AUDIOPLAYER",audioFilePath);
-    	// Log.v("AUDIOPLAYER",mimeType);
-    	// Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-    	// File newFile = new File(audioFilePath);
-    	// intent.setDataAndType(Uri.fromFile(newFile), mimeType);
-    	// startActivity(intent);
-    	// }
     }
 
-    // @Override
-    // public void onClick(View v) {
-    // Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-    //
-    // File sdcard = Environment.getExternalStorageDirectory();
-    //
-    // File audioFile = new File(sdcard.getPath() + "/Music/Emo_Mamma.mp3");
-    //
-    // intent.setDataAndType(Uri.fromFile(audioFile), "audio/mp3");
-    // startActivity(intent);
-    //
-    // }
+
     protected void onListItemClick(ListView l, View v, int position, long id) {
     	if (currentState == STATE_SELECT_ALBUM) {
     		if (cursor.moveToPosition(position)) {
@@ -118,16 +69,43 @@ public class MainActivity extends ListActivity
     	} else if (currentState == STATE_SELECT_SONG) {
     		if (cursor.moveToPosition(position)) {
 
-    			int fileColumn = cursor
-    					.getColumnIndex(MediaStore.Audio.Media.DATA);
-    			int mimeTypeColumn = cursor
-    					.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE);
+    			int fileColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+    			int mimeTypeColumn = cursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE);
     			String audioFilePath = cursor.getString(fileColumn);
     			String mimeType = cursor.getString(mimeTypeColumn);
-    			Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-    			File newFile = new File(audioFilePath);
-    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
-    			startActivity(intent);
+//    			Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+//    			File newFile = new File(audioFilePath);
+//    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
+//    			startActivity(intent);
+    			MediaPlayer mp = new MediaPlayer();
+    			try {
+					mp.setDataSource(audioFilePath);
+				} catch (IllegalArgumentException e) {
+					// TODO Automatisch generierter Erfassungsblock
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Automatisch generierter Erfassungsblock
+					e.printStackTrace();
+				} catch (IllegalStateException e) {
+					// TODO Automatisch generierter Erfassungsblock
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Automatisch generierter Erfassungsblock
+					e.printStackTrace();
+				}
+    			try {
+					mp.prepare();
+				} catch (IllegalStateException e) {
+					// TODO Automatisch generierter Erfassungsblock
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Automatisch generierter Erfassungsblock
+					e.printStackTrace();
+				}
+    			mp.start();
+    			
+    			
+    			
     			}
     		}
     	}
