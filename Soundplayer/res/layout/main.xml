@@ -29,5 +29,10 @@
 			 <ListView 	android:id="@+android:id/list" 
 			     		android:layout_width="wrap_content"
 						android:layout_height="wrap_content"/>
-
+			
+			 <Button	android:text="Stop Playback"
+			     		android:id="@+id/stopButton"
+			    		android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+						 
 </LinearLayout>

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -18,7 +19,7 @@ public class MainActivity extends ListActivity
 {	
 	public final static String EXTRA_MESSAGE = "ch.brownbag.soundplayer.MESSAGE";
     
-//	Button playButton;
+	Button stopButton;
 	Cursor cursor;
 	public static int STATE_SELECT_ALBUM = 0;
 	public static int STATE_SELECT_SONG = 1;
@@ -107,7 +108,11 @@ public class MainActivity extends ListActivity
     		}
     	}
     			
-    			
+    	public void onClick(View v){
+    		if (v == stopButton){
+    			finish();
+    		}
+    	}
     			
         
     /** Called when the user clicks the Send button */
