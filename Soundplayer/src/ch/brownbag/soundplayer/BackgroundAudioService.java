@@ -50,7 +50,15 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 				// TODO Automatisch generierter Erfassungsblock
 				e.printStackTrace();
 			}
-			
+			try {
+				mediaPlayer.prepare();
+			} catch (IllegalStateException e) {
+				// TODO Automatisch generierter Erfassungsblock
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Automatisch generierter Erfassungsblock
+				e.printStackTrace();
+			}
 			mediaPlayer.start();
 		}
 		return START_STICKY;
