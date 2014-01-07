@@ -19,6 +19,8 @@ import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends ListActivity implements OnClickListener
 {	
+	static Uri URI;
+	
 	public final static String EXTRA_MESSAGE = "ch.brownbag.soundplayer.MESSAGE";
     
 
@@ -30,7 +32,6 @@ public class MainActivity extends ListActivity implements OnClickListener
 	Button startPlaybackButton, stopPlaybackButton;
 	Intent playbackServiceIntent;
 	
-
     /** Called when the activity is first created.  */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class MainActivity extends ListActivity implements OnClickListener
     	setListAdapter(new SimpleCursorAdapter(this,
     			android.R.layout.simple_list_item_1, cursor, displayFields,
     			displayViews));
+    	
     	startPlaybackButton = (Button) this.findViewById(R.id.StartPlaybackButton);
     	stopPlaybackButton = (Button) this.findViewById(R.id.StopPlaybackButton);
     	startPlaybackButton.setOnClickListener(this);
@@ -93,6 +95,8 @@ public class MainActivity extends ListActivity implements OnClickListener
 //    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
     			
     			playbackServiceIntent.setDataAndType(Uri.fromFile(newFile), mimeType);
+    			
+    			URI = playbackServiceIntent.getData();
     			
     			startService(playbackServiceIntent);
 

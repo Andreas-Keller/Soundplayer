@@ -12,7 +12,7 @@ import android.util.Log;
 
 public class BackgroundAudioService extends Service implements OnCompletionListener{
 
-	MediaPlayer mediaPlayer = new MediaPlayer();
+	MediaPlayer mediaPlayer;
 	
 	@Override
 	public IBinder onBind(Intent intent){
@@ -24,7 +24,7 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		Log.v("PLAYERSERVICE", "onCreate");
 	
 				
-//		mediaPlayer = MediaPlayer.create(this, R.raw.goodmornigandroid);
+		mediaPlayer = MediaPlayer.create(this, MainActivity.URI);
 				
 		mediaPlayer.setOnCompletionListener(this);
 	}
