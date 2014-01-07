@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="ch.brownbag.soundplayer.BackgroundAudioService"/>
         <activity
             android:name="ch.brownbag.soundplayer.DisplayMessageActivity"
             android:label="@string/title_activity_display_message"

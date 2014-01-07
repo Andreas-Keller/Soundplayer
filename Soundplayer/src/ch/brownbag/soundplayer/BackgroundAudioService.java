@@ -24,7 +24,7 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		Log.v("PLAYERSERVICE", "onCreate");
 	
 				
-		mediaPlayer = new MediaPlayer();
+		mediaPlayer = MediaPlayer.create(this, MainActivity.URI);
 				
 		mediaPlayer.setOnCompletionListener(this);
 	}
@@ -35,30 +35,6 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		Log.v("PLAYERSERVICE","onStartCommand");
 		if (!mediaPlayer.isPlaying()) {
 			
-			try {
-				mediaPlayer.setDataSource(MainActivity.audioFilePath);
-			} catch (IllegalArgumentException e) {
-				// TODO Automatisch generierter Erfassungsblock
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				// TODO Automatisch generierter Erfassungsblock
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Automatisch generierter Erfassungsblock
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Automatisch generierter Erfassungsblock
-				e.printStackTrace();
-			}
-			try {
-				mediaPlayer.prepare();
-			} catch (IllegalStateException e) {
-				// TODO Automatisch generierter Erfassungsblock
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Automatisch generierter Erfassungsblock
-				e.printStackTrace();
-			}
 			mediaPlayer.start();
 		}
 		return START_STICKY;
