@@ -35,7 +35,21 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		Log.v("PLAYERSERVICE","onStartCommand");
 		if (!mediaPlayer.isPlaying()) {
 			
-			mediaPlayer.setDataSource(MainActivity.audioFilePath);
+			try {
+				mediaPlayer.setDataSource(MainActivity.audioFilePath);
+			} catch (IllegalArgumentException e) {
+				// TODO Automatisch generierter Erfassungsblock
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Automatisch generierter Erfassungsblock
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				// TODO Automatisch generierter Erfassungsblock
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Automatisch generierter Erfassungsblock
+				e.printStackTrace();
+			}
 			
 			mediaPlayer.start();
 		}
