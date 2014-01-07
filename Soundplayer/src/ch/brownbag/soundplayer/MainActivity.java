@@ -30,7 +30,7 @@ public class MainActivity extends ListActivity implements OnClickListener
 	Button startPlaybackButton, stopPlaybackButton;
 	Intent playbackServiceIntent;
 	
-	static Uri URI;
+//	static Uri URI;
 	
     /** Called when the activity is first created.  */
     @Override
@@ -89,11 +89,13 @@ public class MainActivity extends ListActivity implements OnClickListener
     			String audioFilePath = cursor.getString(fileColumn);
     			String mimeType = cursor.getString(mimeTypeColumn);
     			
-    			Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+//    			Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
     			File newFile = new File(audioFilePath);
-    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
+//    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
     			
-    			URI = intent.getData();
+    			
+    			playbackServiceIntent.setDataAndType(Uri.fromFile(newFile), mimeType);
+    			
     			startService(playbackServiceIntent);
     			
 //    			startActivity(intent);
