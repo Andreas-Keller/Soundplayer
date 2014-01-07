@@ -1,11 +1,11 @@
 package ch.brownbag.soundplayer;
 
-import java.io.IOException;
+import java.io.File;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
@@ -30,8 +30,8 @@ public class MainActivity extends ListActivity implements OnClickListener
 	Button startPlaybackButton, stopPlaybackButton;
 	Intent playbackServiceIntent;
 	
-	static String audioFilePath;
-	
+//	static String audioFilePath;
+	static Uri URI;
 	
     /** Called when the activity is first created.  */
     @Override
@@ -89,7 +89,9 @@ public class MainActivity extends ListActivity implements OnClickListener
     			String audioFilePath = cursor.getString(fileColumn);
     			String mimeType = cursor.getString(mimeTypeColumn);
 //    			Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-//    			File newFile = new File(audioFilePath);
+    			File newFile = new File(audioFilePath);
+    			URI=Uri.fromFile(newFile);
+    			
 //    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
 //    			startActivity(intent);
     			

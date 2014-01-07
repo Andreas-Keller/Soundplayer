@@ -23,23 +23,8 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 	public void onCreate(){
 		Log.v("PLAYERSERVICE", "onCreate");
 	
-		try {
-			mediaPlayer.setDataSource(MainActivity.audioFilePath);
-		} catch (IllegalArgumentException e) {
-			// TODO Automatisch generierter Erfassungsblock
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Automatisch generierter Erfassungsblock
-			e.printStackTrace();
-		} catch (IllegalStateException e) {
-			// TODO Automatisch generierter Erfassungsblock
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Automatisch generierter Erfassungsblock
-			e.printStackTrace();
-		}
-		
-//		mediaPlayer = MediaPlayer.create(this, R.raw.goodmornigandroid);
+				
+		mediaPlayer = MediaPlayer.create(this, MainActivity.URI);
 				
 		mediaPlayer.setOnCompletionListener(this);
 	}
