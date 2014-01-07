@@ -24,7 +24,7 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		Log.v("PLAYERSERVICE", "onCreate");
 	
 				
-		mediaPlayer = MediaPlayer.create(this, MainActivity.URI);
+		mediaPlayer = MediaPlayer.create(this, 0);
 				
 		mediaPlayer.setOnCompletionListener(this);
 	}

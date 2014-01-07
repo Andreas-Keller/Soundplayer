@@ -21,7 +21,7 @@ public class MainActivity extends ListActivity implements OnClickListener
 {	
 	public final static String EXTRA_MESSAGE = "ch.brownbag.soundplayer.MESSAGE";
     
-//	Button stopButton;
+
 	Cursor cursor;
 	public static int STATE_SELECT_ALBUM = 0;
 	public static int STATE_SELECT_SONG = 1;
@@ -30,9 +30,7 @@ public class MainActivity extends ListActivity implements OnClickListener
 	Button startPlaybackButton, stopPlaybackButton;
 	Intent playbackServiceIntent;
 	
-//	static String audioFilePath;
-	static Uri URI;
-	
+
     /** Called when the activity is first created.  */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,11 +86,17 @@ public class MainActivity extends ListActivity implements OnClickListener
     			int mimeTypeColumn = cursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE);
     			String audioFilePath = cursor.getString(fileColumn);
     			String mimeType = cursor.getString(mimeTypeColumn);
+
 //    			Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
     			File newFile = new File(audioFilePath);
-    			URI=Uri.fromFile(newFile);
-    			
+    						
 //    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
+    			
+    			playbackServiceIntent.setDataAndType(Uri.fromFile(newFile), mimeType);
+    			
+    			startService(playbackServiceIntent);
+
+    			
 //    			startActivity(intent);
     			
     			
