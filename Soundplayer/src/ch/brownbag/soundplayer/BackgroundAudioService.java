@@ -24,7 +24,7 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		Log.v("PLAYERSERVICE", "onCreate");
 	
 				
-		mediaPlayer = MediaPlayer.create(this, MainActivity.URI);
+		mediaPlayer = MediaPlayer.create(this, null);
 				
 		mediaPlayer.setOnCompletionListener(this);
 	}
@@ -34,6 +34,9 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.v("PLAYERSERVICE","onStartCommand");
 		if (!mediaPlayer.isPlaying()) {
+			
+			mediaPlayer.setDataSource(MainActivity.audioFilePath);
+			
 			mediaPlayer.start();
 		}
 		return START_STICKY;
