@@ -68,6 +68,17 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 	}
 		
 	
+	public void onDestroy(){
+		if (mediaPlayer.isPlaying())
+		{
+			mediaPlayer.stop();
+		}
+		mediaPlayer.release();
+		Log.v("SIMPLESERVICE", "onDestroy");	
+	}
+	
+		
+	
 	public void onCompletion(MediaPlayer _mediaPlayer) {
 		stopSelf();
 	}

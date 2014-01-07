@@ -30,7 +30,6 @@ public class MainActivity extends ListActivity implements OnClickListener
 	Button startPlaybackButton, stopPlaybackButton;
 	Intent playbackServiceIntent;
 	
-//	static Uri URI;
 	
     /** Called when the activity is first created.  */
     @Override
