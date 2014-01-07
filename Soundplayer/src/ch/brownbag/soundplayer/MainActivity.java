@@ -3,6 +3,7 @@ package ch.brownbag.soundplayer;
 import java.io.IOException;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -11,19 +12,25 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class MainActivity extends ListActivity
+public class MainActivity extends ListActivity implements OnClickListener
 {	
 	public final static String EXTRA_MESSAGE = "ch.brownbag.soundplayer.MESSAGE";
     
-	Button stopButton;
+//	Button stopButton;
 	Cursor cursor;
 	public static int STATE_SELECT_ALBUM = 0;
 	public static int STATE_SELECT_SONG = 1;
 	int currentState = STATE_SELECT_ALBUM;
+	
+	Button startPlaybackButton, stopPlaybackButton;
+	Intent playbackServiceIntent;
+	
+	static String audioFilePath;
 	
 	
     /** Called when the activity is first created.  */
@@ -40,6 +47,13 @@ public class MainActivity extends ListActivity
     	setListAdapter(new SimpleCursorAdapter(this,
     			android.R.layout.simple_list_item_1, cursor, displayFields,
     			displayViews));
+    	startPlaybackButton = (Button) this.findViewById(R.id.StartPlaybackButton);
+    	stopPlaybackButton = (Button) this.findViewById(R.id.StopPlaybackButton);
+    	startPlaybackButton.setOnClickListener(this);
+    	stopPlaybackButton.setOnClickListener(this);
+    	playbackServiceIntent = new Intent(this,BackgroundAudioService.class);
+    	
+    	
     }
 
 
@@ -78,41 +92,41 @@ public class MainActivity extends ListActivity
 //    			File newFile = new File(audioFilePath);
 //    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
 //    			startActivity(intent);
-    			MediaPlayer mp = new MediaPlayer();
-    			try {
-					mp.setDataSource(audioFilePath);
-				} catch (IllegalArgumentException e) {
-					// TODO Automatisch generierter Erfassungsblock
-					e.printStackTrace();
-				} catch (SecurityException e) {
-					// TODO Automatisch generierter Erfassungsblock
-					e.printStackTrace();
-				} catch (IllegalStateException e) {
-					// TODO Automatisch generierter Erfassungsblock
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Automatisch generierter Erfassungsblock
-					e.printStackTrace();
-				}
-    			try {
-					mp.prepare();
-				} catch (IllegalStateException e) {
-					// TODO Automatisch generierter Erfassungsblock
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Automatisch generierter Erfassungsblock
-					e.printStackTrace();
-				}
-    			mp.start();
-    			}
-    		}
-    	}
     			
-    	public void onClick(View v){
-    		if (v == stopButton){
-    			onDestroy();
+    			
+    			
+//    			MediaPlayer mp = new MediaPlayer();
+//    			try {
+//					mp.setDataSource(audioFilePath);
+//				} catch (IllegalArgumentException e) {
+//					// TODO Automatisch generierter Erfassungsblock
+//					e.printStackTrace();
+//				} catch (SecurityException e) {
+//					// TODO Automatisch generierter Erfassungsblock
+//					e.printStackTrace();
+//				} catch (IllegalStateException e) {
+//					// TODO Automatisch generierter Erfassungsblock
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					// TODO Automatisch generierter Erfassungsblock
+//					e.printStackTrace();
+//				}
+//    			try {
+//					mp.prepare();
+//				} catch (IllegalStateException e) {
+//					// TODO Automatisch generierter Erfassungsblock
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					// TODO Automatisch generierter Erfassungsblock
+//					e.printStackTrace();
+//				}
+//    			mp.start();
+//    			}
     		}
     	}
+    }
+    			
+    	
     			
         
     /** Called when the user clicks the Send button */
@@ -145,6 +159,19 @@ public class MainActivity extends ListActivity
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+	@Override
+	public void onClick(View v) {
+	
+		if (v == startPlaybackButton) {
+			startService(playbackServiceIntent);
+			finish();
+			} else if (v == stopPlaybackButton) {
+			stopService(playbackServiceIntent);
+			finish();
+			}
+		}
 	
 }//end class MainActivity
 
