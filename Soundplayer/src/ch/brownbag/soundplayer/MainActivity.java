@@ -110,7 +110,7 @@ public class MainActivity extends ListActivity
     			
     	public void onClick(View v){
     		if (v == stopButton){
-    			finish();
+    			onDestroy();
     		}
     	}
     			
