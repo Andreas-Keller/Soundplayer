@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -38,7 +39,7 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		if (!mediaPlayer.isPlaying()) {
 			
 			try {
-				mediaPlayer.setDataSource(intent.getDataString()); //MainActivity.playbackServiceIntent.getData());
+				mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().getPath()+intent.getDataString());
 			} catch (IllegalArgumentException e) {
 				// TODO Automatisch generierter Erfassungsblock
 				e.printStackTrace();

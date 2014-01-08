@@ -98,36 +98,7 @@ public class MainActivity extends ListActivity implements OnClickListener
     			startService(playbackServiceIntent);
     			
 //    			startActivity(intent);
-    			
-    			
-    			
-//    			MediaPlayer mp = new MediaPlayer();
-//    			try {
-//					mp.setDataSource(audioFilePath);
-//				} catch (IllegalArgumentException e) {
-//					// TODO Automatisch generierter Erfassungsblock
-//					e.printStackTrace();
-//				} catch (SecurityException e) {
-//					// TODO Automatisch generierter Erfassungsblock
-//					e.printStackTrace();
-//				} catch (IllegalStateException e) {
-//					// TODO Automatisch generierter Erfassungsblock
-//					e.printStackTrace();
-//				} catch (IOException e) {
-//					// TODO Automatisch generierter Erfassungsblock
-//					e.printStackTrace();
-//				}
-//    			try {
-//					mp.prepare();
-//				} catch (IllegalStateException e) {
-//					// TODO Automatisch generierter Erfassungsblock
-//					e.printStackTrace();
-//				} catch (IOException e) {
-//					// TODO Automatisch generierter Erfassungsblock
-//					e.printStackTrace();
-//				}
-//    			mp.start();
-//    			}
+    			    		
     		}
     	}
     }
