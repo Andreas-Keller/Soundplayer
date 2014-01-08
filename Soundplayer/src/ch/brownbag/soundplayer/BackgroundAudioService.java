@@ -25,9 +25,9 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		Log.v("PLAYERSERVICE", "onCreate");
 	
 				
-		mediaPlayer = new MediaPlayer();
+//		mediaPlayer = new MediaPlayer();
 		
-//		mediaPlayer = MediaPlayer.create(this, R.raw.goodmorningandroid);
+		mediaPlayer = MediaPlayer.create(this, null);
 		
 		mediaPlayer.setOnCompletionListener(this);
 	}
@@ -39,7 +39,7 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		if (!mediaPlayer.isPlaying()) {
 			
 			try {
-				mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().getPath()+intent.getDataString());
+				mediaPlayer.setDataSource(intent.getDataString());
 			} catch (IllegalArgumentException e) {
 				// TODO Automatisch generierter Erfassungsblock
 				e.printStackTrace();
