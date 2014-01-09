@@ -93,7 +93,7 @@ public class MainActivity extends ListActivity implements OnClickListener
 //    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
     			
     			
-    			playbackServiceIntent.setDataAndType(Uri.fromFile(newFile), mimeType);
+//    			playbackServiceIntent.setDataAndType(Uri.fromFile(newFile), mimeType);
     			
     			
     			startService(playbackServiceIntent);
