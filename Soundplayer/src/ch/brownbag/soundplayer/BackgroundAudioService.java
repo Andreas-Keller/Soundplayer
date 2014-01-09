@@ -39,7 +39,7 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		if (!mediaPlayer.isPlaying()) {
 			
 			try {
-				mediaPlayer.setDataSource(intent.getDataString());
+				mediaPlayer.setDataSource(intent.getData().toString());
 			} catch (IllegalArgumentException e) {
 				// TODO Automatisch generierter Erfassungsblock
 				e.printStackTrace();
