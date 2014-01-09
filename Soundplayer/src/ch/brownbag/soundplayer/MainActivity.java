@@ -85,16 +85,17 @@ public class MainActivity extends ListActivity implements OnClickListener
 
     			int fileColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
     			int mimeTypeColumn = cursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE);
+    			
     			String audioFilePath = cursor.getString(fileColumn);
     			String mimeType = cursor.getString(mimeTypeColumn);
     			
+		
 //    			Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
     			File newFile = new File(audioFilePath);
 //    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
     			
     			
     			playbackServiceIntent.setDataAndType(Uri.fromFile(newFile), mimeType);
-    			
     			
     			startService(playbackServiceIntent);
     			

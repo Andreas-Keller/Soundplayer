@@ -39,11 +39,8 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 		Log.v("PLAYERSERVICE","onStartCommand");
 		if (!mediaPlayer.isPlaying()) {
 			
-			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-			
-			
 			try {
-				mediaPlayer.setDataSource(intent.getData().toString());
+				mediaPlayer.setDataSource(getApplicationContext(), intent.getData());
 			} catch (IllegalArgumentException e) {
 				// TODO Automatisch generierter Erfassungsblock
 				e.printStackTrace();
