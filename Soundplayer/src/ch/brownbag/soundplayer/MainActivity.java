@@ -89,11 +89,11 @@ public class MainActivity extends ListActivity implements OnClickListener
     			String mimeType = cursor.getString(mimeTypeColumn);
     			
 //    			Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-    			File newFile = new File(audioFilePath);
+    			File newFile = new File("file://"+audioFilePath);
 //    			intent.setDataAndType(Uri.fromFile(newFile), mimeType);
     			
     			
-//    			playbackServiceIntent.setDataAndType(Uri.fromFile(newFile), mimeType);
+    			playbackServiceIntent.setDataAndType(Uri.fromFile(newFile), mimeType);
     			
     			
     			startService(playbackServiceIntent);
