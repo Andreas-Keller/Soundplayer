@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import android.app.Service;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Environment;
@@ -37,6 +38,9 @@ public class BackgroundAudioService extends Service implements OnCompletionListe
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.v("PLAYERSERVICE","onStartCommand");
 		if (!mediaPlayer.isPlaying()) {
+			
+			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+			
 			
 			try {
 				mediaPlayer.setDataSource(intent.getData().toString());
