@@ -51,8 +51,8 @@ public class MainActivity extends ListActivity implements OnClickListener
     	startPlaybackButton.setOnClickListener(this);
     	stopPlaybackButton.setOnClickListener(this);
     	playbackServiceIntent = new Intent(this,BackgroundAudioService.class);
-    	
-    	
+
+
     }
 
 
@@ -83,14 +83,7 @@ public class MainActivity extends ListActivity implements OnClickListener
     	} else if (currentState == STATE_SELECT_SONG) {
     		if (cursor.moveToPosition(position)) {
 
-    			startPlaybackButton = (Button) this.findViewById(R.id.StartPlaybackButton);
-    	    	stopPlaybackButton = (Button) this.findViewById(R.id.StopPlaybackButton);
-    	    	startPlaybackButton.setOnClickListener(this);
-    	    	stopPlaybackButton.setOnClickListener(this);
-    			
-    			    			
-    			
-    			
+    		 			
     			int fileColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
     			int mimeTypeColumn = cursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE);
     			
@@ -167,6 +160,15 @@ public class MainActivity extends ListActivity implements OnClickListener
 		startActivity(getIntent());
 	}
 	
+	
+	
+	public void addFooterView(View v, Object data, boolean isSelectable){
+		startPlaybackButton = (Button) this.findViewById(R.id.StartPlaybackButton);
+    	stopPlaybackButton = (Button) this.findViewById(R.id.StopPlaybackButton);
+    	startPlaybackButton.setOnClickListener(this);
+    	stopPlaybackButton.setOnClickListener(this);
+		
+	}
 	
 	
 }//end class MainActivity
