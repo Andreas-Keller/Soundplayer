@@ -155,7 +155,8 @@ public class MainActivity extends ListActivity implements OnClickListener
 	
 	@Override
 	public void onBackPressed(){
-		currentState = STATE_SELECT_ALBUM;
+		finish();
+		startActivity(getIntent());
 	}
 	
 	
