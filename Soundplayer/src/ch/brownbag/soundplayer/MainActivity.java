@@ -83,6 +83,14 @@ public class MainActivity extends ListActivity implements OnClickListener
     	} else if (currentState == STATE_SELECT_SONG) {
     		if (cursor.moveToPosition(position)) {
 
+    			startPlaybackButton = (Button) this.findViewById(R.id.StartPlaybackButton);
+    	    	stopPlaybackButton = (Button) this.findViewById(R.id.StopPlaybackButton);
+    	    	startPlaybackButton.setOnClickListener(this);
+    	    	stopPlaybackButton.setOnClickListener(this);
+    			
+    			    			
+    			
+    			
     			int fileColumn = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
     			int mimeTypeColumn = cursor.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE);
     			
