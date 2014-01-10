@@ -162,14 +162,14 @@ public class MainActivity extends ListActivity implements OnClickListener
 	
 	
 	
-	public void addFooterView(View v, Object data, boolean isSelectable){
-		startPlaybackButton = (Button) this.findViewById(R.id.StartPlaybackButton);
-    	stopPlaybackButton = (Button) this.findViewById(R.id.StopPlaybackButton);
-    	startPlaybackButton.setOnClickListener(this);
-    	stopPlaybackButton.setOnClickListener(this);
-		
-	}
-	
+//	public void addFooterView(View v, Object data, boolean isSelectable){
+//		startPlaybackButton = (Button) this.findViewById(R.id.StartPlaybackButton);
+//    	stopPlaybackButton = (Button) this.findViewById(R.id.StopPlaybackButton);
+//    	startPlaybackButton.setOnClickListener(this);
+//    	stopPlaybackButton.setOnClickListener(this);
+//		
+//	}
+//	
 	
 }//end class MainActivity
 
