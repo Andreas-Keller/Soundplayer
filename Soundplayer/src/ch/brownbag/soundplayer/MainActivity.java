@@ -144,8 +144,9 @@ public class MainActivity extends ListActivity implements OnClickListener
 	public void onClick(View v) {
 	
 		if (v == startPlaybackButton) {
-			startService(playbackServiceIntent);
+//			startService(playbackServiceIntent);
 			finish();
+			startActivity(getIntent());
 			} else if (v == stopPlaybackButton) {
 			stopService(playbackServiceIntent);
 			finish();
