@@ -10,4 +10,8 @@
     <string name="title_activity_display_message">My Message</string>
     <string name="hello_world">Hello world!</string>
 	<string name="action_search">Find music</string>
+	<string name="button_refresh">Refresh</string>
+	<string name="button_stop">Stop</string>
+	<string name="search_hint">Search Songs</string>
+	
 </resources>

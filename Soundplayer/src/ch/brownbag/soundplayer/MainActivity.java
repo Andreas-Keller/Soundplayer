@@ -3,6 +3,8 @@ package ch.brownbag.soundplayer;
 import java.io.File;
 
 import android.app.ListActivity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends ListActivity implements OnClickListener
@@ -122,18 +125,34 @@ public class MainActivity extends ListActivity implements OnClickListener
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_activity_actions, menu);
-        return super.onCreateOptionsMenu(menu);
+        inflater.inflate(R.menu.options_menu, menu);
+        
+        
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+       
+        
+//        return super.onCreateOptionsMenu(menu);
+        
+        return true;
     }
+    
+    
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case R.id.action_search:
-//                openSearch();
-                return true;
+//            case R.id.action_search:
+//             	            	
+//            	openSearch();
+//                return true;
             case R.id.action_settings:
-//                openSettings();
+            	
+            	
+                openSettings();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -154,11 +173,47 @@ public class MainActivity extends ListActivity implements OnClickListener
 			}
 		}
 	
-	@Override
-	public void onBackPressed(){
-		finish();
-		startActivity(getIntent());
+	
+	
+	public void openSearch(){
+		
+		
+		
+	      Intent popUp = new  Intent(this, SearchResultsActivity.class);
+          startActivity(popUp);
+		
+		
+		
+		
 	}
+	
+	
+	public void openSettings(){
+		
+		  Intent popUp = new  Intent(this, DisplayMessageActivity.class);
+          startActivity(popUp);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@Override
+//	public void onBackPressed(){
+//		finish();
+//		startActivity(getIntent());
+//	}
 	
 	
 	
