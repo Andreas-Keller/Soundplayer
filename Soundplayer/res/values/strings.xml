@@ -13,5 +13,8 @@
 	<string name="button_refresh">Refresh</string>
 	<string name="button_stop">Stop</string>
 	<string name="search_hint">Search Songs</string>
+	<string name="text_results">These are the results</string>
+	
+	
 	
 </resources>

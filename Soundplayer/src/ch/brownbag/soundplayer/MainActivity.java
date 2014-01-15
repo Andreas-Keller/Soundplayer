@@ -53,8 +53,12 @@ public class MainActivity extends ListActivity implements OnClickListener
     	stopPlaybackButton = (Button) this.findViewById(R.id.StopPlaybackButton);
     	startPlaybackButton.setOnClickListener(this);
     	stopPlaybackButton.setOnClickListener(this);
-    	playbackServiceIntent = new Intent(this,BackgroundAudioService.class);
+    	playbackServiceIntent = new Intent(this, BackgroundAudioService.class);
 
+    	handleIntent(getIntent());
+
+    	
+    	
 
     }
 
@@ -121,15 +125,19 @@ public class MainActivity extends ListActivity implements OnClickListener
 //    	intent.putExtra(EXTRA_MESSAGE, message);
 //    	startActivity(intent);
 //    }
+    
+    
+    
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
+        inflater.inflate(R.menu.main_activity_actions, menu);
         
         
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
        
@@ -145,10 +153,10 @@ public class MainActivity extends ListActivity implements OnClickListener
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-//            case R.id.action_search:
+            case R.id.action_search:
 //             	            	
 //            	openSearch();
-//                return true;
+                return true;
             case R.id.action_settings:
             	
             	
@@ -179,7 +187,7 @@ public class MainActivity extends ListActivity implements OnClickListener
 		
 		
 		
-	      Intent popUp = new  Intent(this, SearchResultsActivity.class);
+	      Intent popUp = new  Intent(this, DisplayMessageActivity.class);
           startActivity(popUp);
 		
 		
@@ -194,6 +202,43 @@ public class MainActivity extends ListActivity implements OnClickListener
           startActivity(popUp);
 		
 	}
+	
+	
+	
+	@Override
+    protected void onNewIntent(Intent intent) {
+       
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search your data somehow
+            
+            if (query=="3"){
+            	 Intent popUp = new  Intent(this, DisplayMessageActivity.class);
+                 startActivity(popUp);
+            	
+            }
+            
+        }
+    }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
