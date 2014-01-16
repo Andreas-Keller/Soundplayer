@@ -285,10 +285,10 @@ private void showResults(String query) {
 	        	  System.out.println("---------------------------------mTextView ist NICHT null");
 	          }
 			
-    Cursor cursor = managedQuery(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null,
-                            new String[] {query}, null);
-
-    if (cursor == null) {
+//    Cursor cursor = managedQuery(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null,
+//                            new String[] {query}, null);
+//
+//    if (cursor == null) {
         //There are no results
         mTextView.setText(getString(R.string.no_results, new Object[] {query}));
 //				mTextView.setText(query);
@@ -308,7 +308,7 @@ private void showResults(String query) {
       	  System.out.println("---------------------------------showResult() ENDE");
 			
 	
-	}
+//	}
 	
 }
 	
