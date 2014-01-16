@@ -19,12 +19,19 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 public class MainActivity extends ListActivity implements OnClickListener
 {	
+	
+	private TextView mTextView;
+	
+	
 	public final static String EXTRA_MESSAGE = "ch.brownbag.soundplayer.MESSAGE";
     
 
+	
+	
 	Cursor cursor;
 	public static int STATE_SELECT_ALBUM = 0;
 	public static int STATE_SELECT_SONG = 1;
@@ -37,6 +44,8 @@ public class MainActivity extends ListActivity implements OnClickListener
     /** Called when the activity is first created.  */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+ System.out.println("--------------------------------onCreate()");
+    	
     	super.onCreate(savedInstanceState);
     	setContentView(R.layout.main);
     	String[] columns = { android.provider.MediaStore.Audio.Albums._ID,
@@ -57,11 +66,45 @@ public class MainActivity extends ListActivity implements OnClickListener
 
     	handleIntent(getIntent());
 
-    	
-    	
+    	mTextView = (TextView) findViewById(R.id.text);
+    	mTextView.setText("Zebra");
+    	}
+
+    @Override
+    public void onStop(){
+    	super.onStop();
+   	 System.out.println("--------------------------------onStop()");
+	 System.out.println("--------------------------------mText: " + this.mTextView.toString());
 
     }
 
+    @Override
+    public void onDestroy(){
+    	super.onDestroy();
+    	 System.out.println("--------------------------------onDestroy()");
+
+    }
+
+    @Override
+    public void onStart(){
+    	super.onStart();
+    	 System.out.println("--------------------------------onStart()");
+
+    }
+
+    @Override
+    public void onResume(){
+    	super.onResume();
+    	 System.out.println("--------------------------------onResume()");
+
+    }
+
+    @Override
+    public void onRestart(){
+    	super.onRestart();
+    	 System.out.println("--------------------------------onRestart()");
+
+    }
 
     protected void onListItemClick(ListView l, View v, int position, long id) {
     	if (currentState == STATE_SELECT_ALBUM) {
@@ -154,8 +197,8 @@ public class MainActivity extends ListActivity implements OnClickListener
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_search:
-//             	            	
-//            	openSearch();
+             	            	
+            	openSearch();
                 return true;
             case R.id.action_settings:
             	
@@ -186,6 +229,7 @@ public class MainActivity extends ListActivity implements OnClickListener
 	public void openSearch(){
 		
 		
+   	 System.out.println("--------------------------------openSearch()");
 		
 	      Intent popUp = new  Intent(this, DisplayMessageActivity.class);
           startActivity(popUp);
@@ -208,31 +252,65 @@ public class MainActivity extends ListActivity implements OnClickListener
 	@Override
     protected void onNewIntent(Intent intent) {
        
+     	 System.out.println("--------------------------------onNewIntent(): " + intent.getAction());
         handleIntent(intent);
+
     }
 
     private void handleIntent(Intent intent) {
-
+    	
+     	 System.out.println("--------------------------------handleIntent(): " + intent.getAction());
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
             
-            if (query=="3"){
-            	 Intent popUp = new  Intent(this, DisplayMessageActivity.class);
-                 startActivity(popUp);
+           showResults(query);
             	
             }
-            
+    	  System.out.println("---------------------------------handleIntent() ENDE");
+          
         }
-    }
+    
 
 	
+private void showResults(String query) {
+	          System.out.println("showResults()   :"+query +"\n\n\n\n");
+//	          mTextView = (TextView) findViewById(R.id.text);
+	          if(mTextView == null)
+	          {
+	        	  System.out.println("--------------------------------mTextView ist null");
+	          }
+	          else
+	          {
+	        	  System.out.println("---------------------------------mTextView ist NICHT null");
+	          }
+			
+    Cursor cursor = managedQuery(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null,
+                            new String[] {query}, null);
+
+    if (cursor == null) {
+        //There are no results
+        mTextView.setText(getString(R.string.no_results, new Object[] {query}));
+//				mTextView.setText(query);
+
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Automatisch generierter Erfassungsblock
+				e.printStackTrace();
+			}
+      	  
+//			Intent results = new Intent(this, SearchResultsActivity.class);
+//			startActivity(results);
+			
+			
+			
+      	  System.out.println("---------------------------------showResult() ENDE");
+			
 	
+	}
 	
-	
-	
-	
-	
+}
 	
 	
 	
@@ -270,6 +348,6 @@ public class MainActivity extends ListActivity implements OnClickListener
 //		
 //	}
 //	
-	
+		
 }//end class MainActivity
 

@@ -124,7 +124,7 @@ public class SearchResultsActivity extends Activity{
 	            String query = intent.getStringExtra(SearchManager.QUERY);
 	            //use the query to search your data somehow
 	            if (query=="3"){
-	            	Intent popUp = new Intent(this, DisplayMessageActivity.class);
+	            	Intent popUp = new Intent(getApplicationContext(), SearchResultsActivity.class);
 	            	startActivity(popUp);
 	            	
 	            }
